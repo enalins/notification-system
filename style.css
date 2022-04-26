@@ -1,0 +1,210 @@
+:root {
+  font-size: 16px;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  transition: 0.28s ease;
+}
+body {
+  padding: 5rem 0 0;
+  background: linear-gradient(to bottom, #2d143c, #000 100px);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+.container {width: 100%; padding-right: 15px; padding-left: 15px; margin-right: auto; margin-left: auto; flex-grow: 1;}
+
+@media (min-width: 576px) {.container {max-width: 540px;}}
+@media (min-width: 768px) {.container {max-width: 720px;}}
+@media (min-width: 992px) {.container {max-width: 960px;}}
+@media (min-width: 1200px) {.container {max-width: 1140px;}}
+.main-title {
+  color: white;
+  margin-bottom: 3rem;
+  text-align: center;
+  font-size: 2.5rem;
+}
+  .main-title span {
+    color: transparent;
+    background: linear-gradient(135deg, #ca41ca, #d29e3b) text;
+  }
+.secondary-title {
+  color: #111;
+  margin-bottom: 1rem;
+}
+
+/* [ FORM ] */
+form {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+input {
+  background-color: #eaeaea;
+  height: 50px;
+  border-radius: 5px;
+  border: 0;
+  padding: 0 1rem;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+  input:focus {
+    outline: 0;
+    border: 0;
+  }
+
+/* [ MEDIA QUERYS ] */
+@media screen and (max-width: 1024px) {
+  form {
+    margin: 0 10% 3rem;
+  }
+}
+@media screen and (max-width: 767px) {
+  form {
+    margin: 0 0 3rem;
+  }
+}
+
+.main-btn {
+  background: transparent;
+  color: #fff;
+  height: 42px;
+  border-radius: 5px;
+  border: 0;
+  padding: 0 1.5rem;
+  cursor: pointer;
+  user-select: none;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+  .main-btn::before {
+    content: "";
+    background: linear-gradient(to right, #2d143c, #000);
+    width: 200%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 0.28s ease;
+    z-index: -1;
+  }
+  .main-btn:hover::before {
+    left: -100%;
+  }
+
+/* [ MAIN CONTENT ] */
+.main-box {
+  background-color: white;
+  border-radius: 5px;
+  padding: 2rem;
+  width: min(450px, 100%);
+  margin: 0 auto;
+}
+
+/* [ ANIMATIONS ] */
+@keyframes notificationEntry {
+  0% {right: -242px}
+  10% {right: 2rem}
+  90% {right: 2rem}
+  100% {right: -242px}
+}
+@keyframes timer {
+  0% {width: 100%}
+  90% {width: 0%}
+  100% {width: 0%}
+}
+
+/* [ NOTIFICATIONS ] */
+.notification {
+  position: fixed;
+  top: 2rem;
+  right: -242px;
+  display: grid;
+  grid-template-columns: 40px 150px 20px;
+  grid-template-rows: 40px 8px;
+  grid-template-areas: 'icon text close' 'timer timer timer';
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  transition: 0.28s ease;
+}
+  .notification.error {
+    background-color: #dc3545;
+  }
+  .notification.success {
+    background-color: #198754;
+  }
+  .notification.entry {
+    animation: notificationEntry 6s;
+  }
+  .notification.entry .notification__timer__progress {
+    animation: timer 6s linear;
+  }
+  .notification__icon {
+    grid-area: icon;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 50%;
+    border: solid 2px #fff;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+    .notification.error .notification__icon {
+      content: '!';
+    }
+  .notification__text {
+    grid-area: text;
+  }
+    .notification__text__title {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #fff;
+      text-transform: capitalize;
+    }
+    .notification__text__message {
+      font-size: 0.65rem;
+      color: #fff
+    }
+  .notification__close {
+    grid-area: close;
+    padding: 0 2px 2px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    height: max-content;
+  }
+  .notification__timer {
+    grid-area: timer;
+    padding: 2px;
+    background-color: rgba(255,255,255,0.25);
+    border-radius: 4px;
+  }
+    .notification__timer__progress {
+      height: 4px;
+      background-color: #fff;
+      border-radius: 2px;
+      transition: 0.28s linear;
+    }
+
+footer {
+  margin-top: 3rem;
+  padding: 0.5rem 15px;
+  text-align: center;
+  color: white;
+}
+  footer a {
+    color: #ca41ca;
+  }
